@@ -12,8 +12,8 @@ const pool = mysql.createPool({
 
 const Order = {
   // Create
-  async create(userData) {
-    const { customerName, customerEmail, itemCategory, itemDescription, quantity, unitPrice, orderStatus, orderDate } = userData;
+  async create(orderData) {
+    const { customerName, customerEmail, itemCategory, itemDescription, quantity, unitPrice, orderStatus, orderDate } = orderData;
     const sql = `INSERT INTO Orders (customerName, customerEmail, itemCategory, itemDescription, quantity, unitPrice, orderStatus, orderDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
     const [result] = await pool.execute(sql, [customerName, customerEmail, itemCategory, itemDescription, quantity, unitPrice, orderStatus, orderDate]);
     return result.insertId;
